@@ -1,0 +1,19 @@
+\frametitle{Encapsulamento}
+\begin{itemize}
+        \item Se o atributo é privado, como acessar?
+        \item Via \textbf{métodos}
+    \end{itemize}
+    \small
+    \begin{semiverbatim}
+    class Carro:
+        #Atributo público
+        cor = 'azul'
+        #Atributo privado
+        __nome_proprietario = 'Leo Silva'
+
+        def get_nome_proprietario(self):
+            return self.__nome_proprietario
+
+        def set_nome_proprietario(self, novo_nome_proprietario):
+            self.__nome_proprietario = novo_nome_proprietario
+    \end{semiverbatim}

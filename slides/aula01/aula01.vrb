@@ -1,0 +1,16 @@
+\frametitle{Classe}
+\scriptsize
+\begin{semiverbatim}
+>>>car_1 = Carro() #Instancia o objeto da classe Carro na variável 'car_1'
+>>>car_1.cor = 'Vermelho'
+>>>car_1.marca = 'Honda'
+>>>car_1.modelo = 'HR-V'
+>>>car_1.ano = 2016
+>>>car_1.detalhes() #Chama o método 'detalhes' implementado na classe Carro
+
+cor: Vermelho
+marca: Honda
+modelo: HR-V
+ano: 2016
+km_rodados: 0
+\end{semiverbatim}

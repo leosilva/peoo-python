@@ -1,0 +1,287 @@
+\documentclass{beamer}
+\input{Theme/packages.tex} 
+\usetheme{oxonian}
+\setbeamertemplate{itemize subitem}{$-$}
+\setbeamertemplate{itemize subsubitem}[circle]
+\setbeamercolor{block body alerted}{bg=alerted text.fg!10}
+\setbeamercolor{block title alerted}{bg=alerted text.fg!20}
+\setbeamercolor{block body}{bg=structure!10}
+\setbeamercolor{block title}{bg=structure!20}
+\setbeamercolor{block body example}{bg=green!10}
+\setbeamercolor{block title example}{bg=green!20}
+\setbeamertemplate{blocks}[rounded][shadow]
+ 
+\title{Introdução a Orientação a Objetos - Parte II}
+\subtitle{Programação Estruturada e Orientada a Objetos}
+\titlegraphic{\includegraphics[width=2.5cm]{Theme/Logos/ifrn_cm_vertical.png}}
+\author{Prof. Me. Leo Moreira Silva}
+
+\date{\today}
+
+\begin{document}
+
+{\setbeamertemplate{footline}{} 
+\frame{\titlepage}}
+
+\section*{Agenda}\begin{frame}{Agenda}\tableofcontents\end{frame}
+
+\section{Construtores}
+
+\begin{frame}[fragile]{Construtores}
+    \begin{itemize}
+        \item Métodos importantes em classes
+        \item São executados assim que o objeto é instanciado;
+        \item Em Python, possui a seguinte estrutura:
+    \end{itemize}
+    \small
+    \begin{semiverbatim}
+        def __init__(self):
+    \end{semiverbatim}
+    \begin{itemize}
+        \item Geralmente utilizado para a inialização de atributos.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Construtores}
+    \begin{itemize}
+        \item Classe Carro \textbf{sem} construtor:
+    \end{itemize}
+    \small
+    \begin{semiverbatim}
+    class Carro:
+        cor = 'sem cor'
+        marca = 'sem marca'
+        modelo = 'sem modelo'
+        ano = 2010
+        km_rodados = 0
+    
+        def detalhes(self):
+            print('cor:', self.cor)
+            print('marca:', self.marca)
+            print('modelo:', self.modelo)
+            print('ano:', self.ano)
+            print('km rodados:', self.km_rodados)
+    \end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Construtores}
+    \scriptsize
+    \begin{semiverbatim}
+    >>>car_1 = Carro() #Instancia o objeto da classe Carro na variável 'car_1'
+    >>>car_1.cor = 'Vermelho'
+    >>>car_1.marca = 'Honda'
+    >>>car_1.modelo = 'HR-V'
+    >>>car_1.ano = 2016
+    >>>car_1.detalhes() #Chama o método 'detalhes' implementado na classe Carro
+    
+    cor: Vermelho
+    marca: Honda
+    modelo: HR-V
+    ano: 2016
+    km_rodados: 0
+    \end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Construtores}
+    \begin{itemize}
+        \item Classe Carro \textbf{com} construtor:
+    \end{itemize}
+    \small
+    \begin{semiverbatim}
+    class Carro:
+        def __init__(self, cor, marca, modelo, ano, km_rodados):
+            self.cor = cor
+            self.marca = marca
+            self.modelo = modelo
+            self.ano = ano
+            self.km_rodados = km_rodados
+    
+        def detalhes(self):
+            print 'cor:', self.cor
+            print 'marca:', self.marca
+            print 'modelo:', self.modelo
+            print 'ano:', self.ano
+            print 'km rodados:', self.km_rodados
+    \end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Construtores}
+    \small
+    \begin{semiverbatim}
+    >>> from Carro_construtor import Carro
+    >>> car = Carro('Azul', 'Honda', 'HR-V', 2016, 2000)
+    >>> car.detalhes()
+    
+    cor: Azul
+    marca: Honda
+    modelo: HR-V
+    ano: 2016
+    km_rodados: 2000
+    \end{semiverbatim}
+\end{frame}
+
+\section{Documentação}
+
+\begin{frame}[fragile]{Documentação}
+    \begin{itemize}
+        \item Documentar Classes e Métodos
+        \begin{itemize}
+            \item Necessário para todos que irão utilizar o código
+        \end{itemize}
+        \item Função \texttt{help()}:
+        \begin{itemize}
+            \item Exibe documentação de um método/classe
+        \end{itemize}
+    \end{itemize}
+    \small
+    \begin{semiverbatim}
+    >>> help(math.cos)
+    Help on built-in function cos in module math:
+    cos(...)
+        cos(x)
+        Return the cosine of x (measured in radians).
+    \end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Documentação}
+    \begin{itemize}
+        \item Documentação em Python: \textbf{docstrings}
+    \end{itemize}
+    \small
+    \begin{semiverbatim}
+    class Carro:
+        '''
+        Classe que representa um carro. Cada carro possui:
+            -cor
+            -marca
+            -modelo
+            -ano
+            -km_rodados
+            -statusMotor
+            -statusMovimento
+        '''
+    \end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Documentação}
+    \small
+    \begin{semiverbatim}
+    def andar(self):
+        '''Método que coloca o carro em movimento
+        Verifica antes se o carro está ligado ou desligado'''
+        if(self.statusMotor == True):
+            if(self.statusMovimento == True):
+                print 'O carro já está em movimento!'
+            else:
+                self.statusMovimento = True
+                print 'Carro em movimento!'
+        else:
+            print 'Necessário ligar o motor!'
+    \end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Documentação}
+    \scriptsize
+    \begin{semiverbatim}
+    class Carro
+        | Classe que representa um carro.
+        | Cada carro possui:
+        |   -cor
+        |   -marca
+        |   -modelo
+        |   -ano
+        |   -km_rodados
+        |   -statusMotor
+        |   -statusMovimento
+        |
+        | Methods defined here:
+        |
+        | andar(self)
+        |   Método que coloca o carro em movimento
+        |   Verifica antes se o carro está ligado ou desligado
+    \end{semiverbatim}
+\end{frame}
+
+\section{Encapsulamento}
+
+\begin{frame}{Encapsulamento}
+    \begin{itemize}
+        \item Encapsulamento de dados é a proteção dos atributos e métodos de uma Classe
+        \item Seu objetivo é restringir o acesso direto à informação
+        \item Existem dois tipos de atributos em OO - Python:
+        \begin{itemize}
+            \item Público
+            \item Privado
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Encapsulamento}
+    \begin{itemize}
+        \item Atributos Públicos
+        \begin{itemize}
+            \item Podem ser acessados diretamente
+            \item Não existe restrição quanto a escrita e leitura deles
+        \end{itemize}
+        \item Atributos privados
+        \begin{itemize}
+            \item São acessados via métodos
+            \item Restrição de leitura e escrita aos dados de forma direta
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Encapsulamento}
+    \small
+    \begin{semiverbatim}
+    class Carro:
+        #Atributo público
+        cor = 'azul'
+
+        #Atributo privado
+        \_\_nomeProprietario = 'Leo Silva'
+    \end{semiverbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Encapsulamento}
+    \begin{itemize}
+        \item Se o atributo é privado, como acessar?
+        \item Via \textbf{métodos}
+    \end{itemize}
+    \small
+    \begin{semiverbatim}
+    class Carro:
+        #Atributo público
+        cor = 'azul'
+        #Atributo privado
+        __nome_proprietario = 'Leo Silva'
+        
+        def get_nome_proprietario(self):
+            return self.__nome_proprietario
+        
+        def set_nome_proprietario(self, novo_nome_proprietario):
+            self.__nome_proprietario = novo_nome_proprietario
+    \end{semiverbatim}
+\end{frame}
+
+\begin{frame}{Encapsulamento}
+    \begin{itemize}
+        \item Métodos GET/SET:
+        \begin{itemize}
+            \item Utilizados para acesso de leitura (GET) e escrita (SET) de atributos privados
+        \end{itemize}
+        \item Métodos definidos da seguinte forma:
+        \begin{itemize}
+            \item get\_nome\_do\_atributo(self)
+            \item set\_nome\_do\_atributo(self, novo\_nome\_do\_atributo)
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Dúvidas?}
+    \begin{figure}
+        \includegraphics[scale=0.35]{Theme/Logos/duvidas_frequentes.png}
+    \end{figure}
+\end{frame}
+
+\end{document}
